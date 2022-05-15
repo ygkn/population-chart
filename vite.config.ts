@@ -1,5 +1,5 @@
 import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -8,5 +8,11 @@ export default defineConfig({
     alias: {
       '@': 'src',
     },
+  },
+  define: {
+    'import.meta.vitest': 'undefined',
+  },
+  test: {
+    includeSource: ['src/**/*.{ts,tsx}'],
   },
 });
