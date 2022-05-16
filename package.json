@@ -10,7 +10,7 @@
     "lint": "eslint src",
     "format-check": "prettier --check src",
     "type-check": "tsc",
-    "code-check": "run-p --continue-on-error check-format type-check lint test"
+    "code-check": "run-p --continue-on-error format-check type-check lint test"
   },
   "dependencies": {
     "react": "18.1.0",
