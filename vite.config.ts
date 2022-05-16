@@ -4,7 +4,7 @@ import { defineConfig } from 'vitest/config';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), vanillaExtractPlugin()],
+  plugins: [vanillaExtractPlugin(), react()],
   resolve: {
     alias: {
       '@/': `${__dirname}/src/`,
