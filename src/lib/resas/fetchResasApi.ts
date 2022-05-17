@@ -2,6 +2,9 @@ import { ResasRequestParams, ResasResponse, resasResponseSchema } from './type';
 
 const baseUrl = 'https://opendata.resas-portal.go.jp';
 
+/**
+ * @see https://opendata.resas-portal.go.jp/docs/api/v1/index.html
+ */
 export const fetchResasApi = async <Path extends keyof ResasRequestParams>(
   path: Path,
   // Hack to omit `params` argument if unnecessary.
