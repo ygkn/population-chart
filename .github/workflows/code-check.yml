@@ -9,6 +9,8 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
+    env:
+      VITE_RESAS_API_KEY: TEST_RESAS_API_KEY
     steps:
       - uses: actions/checkout@v3
         with:
