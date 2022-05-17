@@ -110,7 +110,7 @@ describe('fetchResasApi', () => {
     const request = await pendingRequest;
 
     expect(request.headers.get('X-API-KEY')).toBe(
-      import.meta.env['RESAS_API_KEY']
+      import.meta.env.VITE_RESAS_API_KEY
     );
   });
 
