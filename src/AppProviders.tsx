@@ -1,8 +1,8 @@
 import type { FC, ReactNode } from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
-const queryClient = new QueryClient();
+import { queryClient } from './lib/react-query';
 
 type Props = {
   children: ReactNode;
