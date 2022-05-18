@@ -11,3 +11,11 @@ createRoot(document.getElementById('root')!).render(
     <App />
   </StrictMode>
 );
+
+if (import.meta.env.DEV) {
+  const { default: axe } = await import('@axe-core/react');
+  const React = await import('react');
+  const ReactDOM = await import('react-dom');
+
+  axe(React, ReactDOM, 1000);
+}
