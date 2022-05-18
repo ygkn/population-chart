@@ -25,3 +25,6 @@ dist-ssr
 
 # dotenv
 .env.local
+
+# coverage
+coverage
