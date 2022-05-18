@@ -4,6 +4,8 @@ import { useCallback, useState } from 'react';
 
 import type { Prefecture } from '../type';
 
+import { prefectures } from '@/test/fixtures/prefecture';
+
 import { SelectPrefecture } from './SelectPrefecture';
 
 const meta: ComponentMeta<typeof SelectPrefecture> = {
@@ -11,21 +13,6 @@ const meta: ComponentMeta<typeof SelectPrefecture> = {
 };
 
 export default meta;
-
-const prefectures: Prefecture[] = [
-  {
-    code: 1,
-    name: '北海道',
-  },
-  {
-    code: 2,
-    name: '青森県',
-  },
-  {
-    code: 3,
-    name: '岩手県',
-  },
-];
 
 const Template: ComponentStory<typeof SelectPrefecture> = () => {
   const [selected, setSelected] = useState<Set<Prefecture['code']>>(new Set());

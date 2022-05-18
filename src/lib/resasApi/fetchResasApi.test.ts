@@ -2,88 +2,16 @@ import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { describe, expect, test } from 'vitest';
 
+import { getPopulation, prefecturesResponse } from '@/test/server';
 import { waitForRequest } from '@/test/util/waitForRequest';
 
 import { fetchResasApi } from './fetchResasApi';
-import type { ResasResponse } from './type';
-
-const prefectures: ResasResponse['/api/v1/prefectures'] = {
-  result: [
-    {
-      prefCode: 1,
-      prefName: '北海道',
-    },
-    {
-      prefCode: 2,
-      prefName: '青森県',
-    },
-    {
-      prefCode: 3,
-      prefName: '岩手県',
-    },
-  ],
-};
-
-const populationCompositionPerYear: ResasResponse['/api/v1/population/composition/perYear'] =
-  {
-    result: {
-      boundaryYear: 2015,
-      data: [
-        {
-          label: '総人口',
-          data: [
-            {
-              year: 2015,
-              value: 100,
-            },
-            {
-              year: 2020,
-              value: 200,
-            },
-          ],
-        },
-        {
-          label: '年少人口',
-          data: [
-            {
-              year: 2015,
-              value: 10,
-              rate: 0.1,
-            },
-            {
-              year: 2020,
-              value: 20,
-              rate: 0.2,
-            },
-          ],
-        },
-      ],
-    },
-  };
 
 describe('fetchResasApi', () => {
-  const server = setupServer(
-    rest.get(
-      'https://opendata.resas-portal.go.jp/api/v1/prefectures',
-      (_, res, ctx) => res(ctx.status(200), ctx.json(prefectures))
-    ),
-    rest.get(
-      'https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear',
-      (_, res, ctx) =>
-        res(ctx.status(200), ctx.json(populationCompositionPerYear))
-    )
-  );
-
-  beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
-
-  afterAll(() => server.close());
-
-  afterEach(() => server.resetHandlers());
-
   test('パラメータなしで fetch できる', async () => {
     const result = await fetchResasApi('/api/v1/prefectures');
 
-    expect(result).toEqual(prefectures);
+    expect(result).toEqual(prefecturesResponse);
   });
 
   test('パラメータありで fetch できる', async () => {
@@ -95,12 +23,11 @@ describe('fetchResasApi', () => {
       }
     );
 
-    expect(result).toEqual(populationCompositionPerYear);
+    expect(result).toEqual(getPopulation(1));
   });
 
   test('API KEY がリクエストヘッダに含まれる', async () => {
     const pendingRequest = waitForRequest(
-      server,
       'GET',
       'https://opendata.resas-portal.go.jp/api/v1/prefectures'
     );
@@ -116,7 +43,6 @@ describe('fetchResasApi', () => {
 
   test('params がリクエストパラメータに含まれる', async () => {
     const pendingRequest = waitForRequest(
-      server,
       'GET',
       'https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear'
     );

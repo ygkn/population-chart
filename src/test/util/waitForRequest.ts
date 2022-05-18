@@ -1,15 +1,12 @@
 import { MockedRequest, matchRequestUrl } from 'msw';
-import type { SetupServerApi } from 'msw/node';
+
+import { server } from '../server';
 
 /**
  *
  * @see https://mswjs.io/docs/extensions/life-cycle-events#asserting-request-payload
  */
-export const waitForRequest = (
-  server: SetupServerApi,
-  method: string,
-  url: string
-) => {
+export const waitForRequest = (method: string, url: string) => {
   let requestId = '';
   return new Promise<MockedRequest>((resolve, reject) => {
     server.events.on('request:start', (req) => {
