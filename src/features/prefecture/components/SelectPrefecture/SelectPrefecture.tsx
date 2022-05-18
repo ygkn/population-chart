@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import type { Prefecture } from '../type';
+import type { Prefecture } from '../../types';
 
 type SelectionData = Set<Prefecture['code']>;
 

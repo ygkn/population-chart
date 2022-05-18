@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 
-import type { Prefecture } from '../type';
+import type { Prefecture } from '../types';
 
 import type { QueryOptions } from '@/lib/react-query';
 import { fetchResasApi } from '@/lib/resasApi/fetchResasApi';
