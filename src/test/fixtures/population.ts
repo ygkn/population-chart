@@ -1,6 +1,6 @@
 export const totalPopulations: {
   year: number;
-  [_: number]: number | undefined;
+  [prefCode: number]: number | undefined;
 }[] = [
   {
     year: 2025,
