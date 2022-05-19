@@ -2,6 +2,8 @@ import type { FC } from 'react';
 
 import type { Prefecture } from '../../types';
 
+import * as styles from './SelectPrefecture.css';
+
 type SelectionData = Set<Prefecture['code']>;
 
 export type Props = {
@@ -31,9 +33,9 @@ export const SelectPrefecture: FC<Props> = ({
   };
 
   return (
-    <div>
+    <div className={styles.labels}>
       {prefectures.map((prefecture) => (
-        <label key={prefecture.code}>
+        <label key={prefecture.code} className={styles.label}>
           <input
             type="checkbox"
             name={`${prefecture.code}`}
