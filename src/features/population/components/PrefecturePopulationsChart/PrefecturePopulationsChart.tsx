@@ -38,7 +38,7 @@ export const PrefecturePopulationsChart: FC = () => {
     .filter(Boolean);
 
   return (
-    <>
+    <div>
       {prefecturesQuery.data && (
         <SelectPrefecture
           prefectures={prefecturesQuery.data}
@@ -50,13 +50,15 @@ export const PrefecturePopulationsChart: FC = () => {
         <MultiLineChart
           xLabel="年度"
           yLabel="人口"
-          lines={prefecturesQuery.data.map(({ code, name }) => ({
-            key: code,
-            name,
-          }))}
+          lines={prefecturesQuery.data
+            .filter(({ code }) => selected.has(code))
+            .map(({ code, name }) => ({
+              key: code,
+              name,
+            }))}
           data={chartData}
         />
       )}
-    </>
+    </div>
   );
 };
