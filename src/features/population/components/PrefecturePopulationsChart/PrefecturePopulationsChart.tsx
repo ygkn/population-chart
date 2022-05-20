@@ -1,8 +1,9 @@
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
 import { FC, useEffect, useState } from 'react';
 
 import { useTotalPopulationsOfPrefectures } from '../../api/getPopulation';
 
-import { MultiLineChart } from '@/components/Chart/MultiLineChart/MultiLineChart';
 import { usePrefectures } from '@/features/prefecture/api/getPrefectures';
 import { SelectPrefecture } from '@/features/prefecture/components/SelectPrefecture/SelectPrefecture';
 import type { Prefecture } from '@/features/prefecture/types';
@@ -68,28 +69,23 @@ export const PrefecturePopulationsChart: FC = () => {
   const selectedArray = Array.from(selected ?? []);
   const totalPopulationsQuery = useTotalPopulationsOfPrefectures(selectedArray);
 
-  const chartData = totalPopulationsQuery
-    .reduce<{ lineKey: number; [prefCode: number]: number }[]>(
-      (acc, { data }, index) => {
-        const prefectureCode = selectedArray[index];
-        if (data === undefined || prefectureCode === undefined) {
-          return acc;
-        }
-
-        const newAcc = [...acc];
-
-        for (const { year, value } of data) {
-          newAcc[year] = {
-            ...(newAcc[year] ?? { lineKey: year }),
-            [prefectureCode]: value,
-          };
-        }
-
-        return newAcc;
-      },
-      []
+  const prefecturePopulationsMap = new Map(
+    totalPopulationsQuery.map(
+      ({ data }, index) => [selectedArray[index], data] as const
     )
-    .filter(Boolean);
+  );
+
+  const chartData = prefecturesQuery.data
+    ?.map(({ name, code }) => ({
+      name,
+      data: prefecturePopulationsMap
+        .get(code)
+        ?.map(({ year, value }) => [year, value] as const),
+    }))
+    ?.filter(
+      (prefecture) =>
+        prefecture.data !== undefined && prefecture.data.length > 0
+    );
 
   return (
     <div className={styles.wrapper}>
@@ -103,17 +99,36 @@ export const PrefecturePopulationsChart: FC = () => {
       {prefecturesQuery.data && selected && selectedArray.length === 0 && (
         <p>都道府県を選択してください。</p>
       )}
-      {prefecturesQuery.data && chartData.length !== 0 && selected && (
-        <MultiLineChart
-          xLabel="年度"
-          yLabel="人口"
-          lines={prefecturesQuery.data
-            .filter(({ code }) => selected.has(code))
-            .map(({ code, name }) => ({
-              key: code,
-              name,
-            }))}
-          data={chartData}
+      {chartData !== undefined && chartData.length !== 0 && (
+        <HighchartsReact
+          highcharts={Highcharts}
+          containerProps={{ className: styles.chartContainer }}
+          options={{
+            className: styles.chart,
+            title: {
+              text: '都道府県の人口',
+            },
+
+            yAxis: {
+              title: {
+                text: '人口',
+              },
+            },
+
+            xAxis: {
+              title: {
+                text: '年度',
+              },
+            },
+
+            legend: {
+              layout: 'vertical',
+              align: 'right',
+              verticalAlign: 'middle',
+            },
+
+            series: chartData,
+          }}
         />
       )}
     </div>

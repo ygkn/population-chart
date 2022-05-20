@@ -8,3 +8,11 @@ export const wrapper = style({
   alignItems: 'center',
   gap: vars.space[1],
 });
+
+export const chartContainer = style({
+  width: '100%',
+});
+
+export const chart = style({
+  width: '100%',
+});
