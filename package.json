@@ -24,7 +24,7 @@
     "react-dom": "18.1.0",
     "react-query": "3.39.0",
     "ress": "5.0.2",
-    "zod": "3.16.0"
+    "zod": "3.16.1"
   },
   "devDependencies": {
     "@axe-core/react": "4.4.2",
