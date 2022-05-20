@@ -7,6 +7,8 @@ import { usePrefectures } from '@/features/prefecture/api/getPrefectures';
 import { SelectPrefecture } from '@/features/prefecture/components/SelectPrefecture/SelectPrefecture';
 import type { Prefecture } from '@/features/prefecture/types';
 
+import * as styles from './PrefecturePopulationsChart.css';
+
 export const PrefecturePopulationsChart: FC = () => {
   const [selected, setSelected] = useState<Set<Prefecture['code']> | undefined>(
     undefined
@@ -90,13 +92,16 @@ export const PrefecturePopulationsChart: FC = () => {
     .filter(Boolean);
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       {prefecturesQuery.data && selected && (
         <SelectPrefecture
           prefectures={prefecturesQuery.data}
           selected={selected}
           onChange={setSelected}
         />
+      )}
+      {prefecturesQuery.data && selected && selectedArray.length === 0 && (
+        <p>都道府県を選択してください。</p>
       )}
       {prefecturesQuery.data && chartData.length !== 0 && selected && (
         <MultiLineChart
