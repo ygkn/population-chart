@@ -14,3 +14,12 @@ export const label = style({
   gap: vars.space[-3],
   alignItems: 'baseline',
 });
+
+export const checkbox = style({
+  ':focus': {
+    outline: 'currentcolor',
+    outlineWidth: '2px',
+    outlineOffset: '2px',
+    outlineStyle: 'solid',
+  },
+});

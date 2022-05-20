@@ -37,6 +37,7 @@ export const SelectPrefecture: FC<Props> = ({
       {prefectures.map((prefecture) => (
         <label key={prefecture.code} className={styles.label}>
           <input
+            className={styles.checkbox}
             type="checkbox"
             name={`${prefecture.code}`}
             value={prefecture.code}
