@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { useTotalPopulationsOfPrefectures } from '../../api/getPopulation';
 
@@ -8,10 +8,62 @@ import { SelectPrefecture } from '@/features/prefecture/components/SelectPrefect
 import type { Prefecture } from '@/features/prefecture/types';
 
 export const PrefecturePopulationsChart: FC = () => {
-  const [selected, setSelected] = useState<Set<Prefecture['code']>>(new Set());
+  const [selected, setSelected] = useState<Set<Prefecture['code']> | undefined>(
+    undefined
+  );
+
+  useEffect(() => {
+    const setSelectedFromSearch = (): void => {
+      const params = new URLSearchParams(window.location.search).get(
+        'prefectures'
+      );
+
+      setSelected(
+        new Set(
+          params
+            ?.split(',')
+            .map((code) => Number(code))
+            .filter((code) => !isNaN(code))
+        )
+      );
+    };
+
+    setSelectedFromSearch();
+
+    window.addEventListener('popstate', setSelectedFromSearch);
+
+    return (): void => {
+      window.removeEventListener('popstate', setSelectedFromSearch);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!selected) {
+      return;
+    }
+
+    const newParams = Array.from(selected)
+      .sort((a, b) => a - b)
+      .join(',');
+
+    const searchParams = new URLSearchParams(window.location.search);
+
+    if ((searchParams.get('prefectures') ?? '') === newParams) {
+      return;
+    }
+
+    searchParams.set('prefectures', newParams);
+
+    window.history.replaceState(
+      null,
+      '',
+      newParams === '' ? '?' : `?${searchParams}`
+    );
+  }, [selected]);
+
   const prefecturesQuery = usePrefectures();
 
-  const selectedArray = Array.from(selected);
+  const selectedArray = Array.from(selected ?? []);
   const totalPopulationsQuery = useTotalPopulationsOfPrefectures(selectedArray);
 
   const chartData = totalPopulationsQuery
@@ -39,14 +91,14 @@ export const PrefecturePopulationsChart: FC = () => {
 
   return (
     <div>
-      {prefecturesQuery.data && (
+      {prefecturesQuery.data && selected && (
         <SelectPrefecture
           prefectures={prefecturesQuery.data}
           selected={selected}
           onChange={setSelected}
         />
       )}
-      {prefecturesQuery.data && chartData.length !== 0 && (
+      {prefecturesQuery.data && chartData.length !== 0 && selected && (
         <MultiLineChart
           xLabel="年度"
           yLabel="人口"
