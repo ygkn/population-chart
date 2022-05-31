@@ -3326,7 +3326,24 @@
     "@typescript-eslint/types" "5.27.0"
     eslint-visitor-keys "^3.3.0"
 
-"@vanilla-extract/css@1.7.0", "@vanilla-extract/css@^1.6.8":
+"@vanilla-extract/css@1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@vanilla-extract/css/-/css-1.7.1.tgz#9168393e4ec9ab00b9702da4990e46ca97d758ad"
+  integrity sha512-afeJXYd709hanseL3O7dV0BPGvcvMhCJ5HOvu8SaOs1Xa4teMA0UGxYoqIyKpwpqmkOcmMXvWEfeQEs3M3p0DQ==
+  dependencies:
+    "@emotion/hash" "^0.8.0"
+    "@vanilla-extract/private" "^1.0.3"
+    chalk "^4.1.1"
+    css-what "^5.0.1"
+    cssesc "^3.0.0"
+    csstype "^3.0.7"
+    deep-object-diff "^1.1.0"
+    deepmerge "^4.2.2"
+    escape-string-regexp "^4.0.0"
+    media-query-parser "^2.0.2"
+    outdent "^0.8.0"
+
+"@vanilla-extract/css@^1.6.8":
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/@vanilla-extract/css/-/css-1.7.0.tgz#7276830c7741b17b7a70720be88c9083682f5206"
   integrity sha512-2Abpr5aJskwKS+waMWxWnTBqq/rj4J93KtGteW0VSORMUsijrupwjOXECd7Llh+nSFfx/Y6usuexF5/ffyDF8A==
@@ -8459,6 +8476,13 @@ mdurl@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/mdurl/-/mdurl-1.0.1.tgz#fe85b2ec75a59037f2adfec100fd6c601761152e"
   integrity sha1-/oWy7HWlkDfyrf7BAP1sYBdhFS4=
+
+media-query-parser@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/media-query-parser/-/media-query-parser-2.0.2.tgz#ff79e56cee92615a304a1c2fa4f2bd056c0a1d29"
+  integrity sha512-1N4qp+jE0pL5Xv4uEcwVUhIkwdUO3S/9gML90nqKA7v7FcOS5vUtatfzok9S9U1EJU8dHWlcv95WLnKmmxZI9w==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
 
 media-typer@0.3.0:
   version "0.3.0"
