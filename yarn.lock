@@ -3335,7 +3335,7 @@
     "@typescript-eslint/types" "5.27.1"
     eslint-visitor-keys "^3.3.0"
 
-"@vanilla-extract/css@1.7.2":
+"@vanilla-extract/css@1.7.2", "@vanilla-extract/css@^1.7.2":
   version "1.7.2"
   resolved "https://registry.yarnpkg.com/@vanilla-extract/css/-/css-1.7.2.tgz#2317f391a1d912372742386c8f44f2fbde3232c3"
   integrity sha512-wRsV9sSD4qN6+dbS1ywExw5kEU4Fk/UipNKFsGwwUsHLyuPKK8BaZUmzfyAQex6POHYQboYv6Ajbqpvhx2KhfQ==
@@ -3382,6 +3382,19 @@
     lodash "^4.17.21"
     outdent "^0.8.0"
 
+"@vanilla-extract/integration@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@vanilla-extract/integration/-/integration-5.0.0.tgz#6652f5bf8effb8f29719f6df8cd754c2d16d5b04"
+  integrity sha512-HwglsIxGYtV4IXFfyQ6GzZLFoaWaW+QkNx8UhXbgsCWUoPqpSbioukCOA+SuSuzsIcEZ3hkD0Y5ixITQNtnzjQ==
+  dependencies:
+    "@vanilla-extract/css" "^1.7.2"
+    esbuild "^0.11.16"
+    eval "0.1.6"
+    find-up "^5.0.0"
+    javascript-stringify "^2.0.1"
+    lodash "^4.17.21"
+    outdent "^0.8.0"
+
 "@vanilla-extract/private@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@vanilla-extract/private/-/private-1.0.3.tgz#7ec72bc2ff6fe51f9d650f962e8d1989b073690f"
@@ -3397,12 +3410,12 @@
     postcss "^8.3.6"
     postcss-load-config "^3.1.0"
 
-"@vanilla-extract/webpack-plugin@2.1.10":
-  version "2.1.10"
-  resolved "https://registry.yarnpkg.com/@vanilla-extract/webpack-plugin/-/webpack-plugin-2.1.10.tgz#5b41538dfe7ef0c69514d35bb1c56d8e7a5ed4c3"
-  integrity sha512-QXjJQbUIyR2hEiz5TaRRAEdLF/1zWLGyc/jotAxugOyzcbCS4C6YvJcHSUoEayjqDbS+Chnj0kSbFC+pQSOjNA==
+"@vanilla-extract/webpack-plugin@2.1.11":
+  version "2.1.11"
+  resolved "https://registry.yarnpkg.com/@vanilla-extract/webpack-plugin/-/webpack-plugin-2.1.11.tgz#ca67aa95c0b1e3511e787dd715c0158dd4a6d1d3"
+  integrity sha512-jCm2TT1jSN/m0TZXYtByuHOsX+ZDimku1SJzvDWF1Eqs3f0If2W1zcd+gaXR6lSaVJ/1MSB/evmeutsT/D3MoA==
   dependencies:
-    "@vanilla-extract/integration" "^4.0.1"
+    "@vanilla-extract/integration" "^5.0.0"
     chalk "^4.1.1"
     debug "^4.3.1"
     loader-utils "^2.0.0"
