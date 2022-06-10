@@ -10,10 +10,10 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@axe-core/react@4.4.2":
-  version "4.4.2"
-  resolved "https://registry.yarnpkg.com/@axe-core/react/-/react-4.4.2.tgz#90869178b91dbf8914694c769d1591815154efbd"
-  integrity sha512-vvkjCxoRQ8MHj/ILG7fAdhLsvrib5qhY6IsVvqeP5Fia0PSh9CGuBJPoz7QzUwuG77P81C1jXOpPNVsAUOzVZQ==
+"@axe-core/react@4.4.3":
+  version "4.4.3"
+  resolved "https://registry.yarnpkg.com/@axe-core/react/-/react-4.4.3.tgz#944ce046c0a3a1e65977c6e230d2a2b812922497"
+  integrity sha512-3eIqDoGVTK20kbY+hD0S9n+ALdZ9FOzV692eD2iyyGMq7on6TCISEv8TljvirSBwWcWIxuUnI69KX/mMQBqtFA==
   dependencies:
     axe-core "^4.4.1"
     requestidlecallback "^0.3.0"
