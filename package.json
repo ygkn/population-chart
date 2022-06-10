@@ -27,7 +27,7 @@
     "zod": "3.17.3"
   },
   "devDependencies": {
-    "@axe-core/react": "4.4.2",
+    "@axe-core/react": "4.4.3",
     "@babel/core": "7.18.2",
     "@storybook/addon-actions": "6.5.8",
     "@storybook/addon-essentials": "6.5.8",
